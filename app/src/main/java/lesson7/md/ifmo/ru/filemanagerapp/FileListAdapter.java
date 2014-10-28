@@ -51,18 +51,14 @@ public class FileListAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         int elementType = getItemViewType(position);
         File file = (File) getItem(position);
-        View itemView = null;
+        View itemView;
         if (convertView != null) {
-            Integer tag = (Integer) convertView.getTag();
-            if (tag != null && tag == elementType) {
-                itemView = convertView;
-            }
-        }
-        if (itemView == null) {
+            itemView = convertView;
+        } else {
             if (elementType == DIR_VIEW_TYPE) {
-                itemView = inflater.inflate(R.layout.folder_view, null, false);
+                itemView = inflater.inflate(R.layout.folder_view, parent, false);
             } else {
-                itemView = inflater.inflate(R.layout.file_view, null, false);
+                itemView = inflater.inflate(R.layout.file_view, parent, false);
             }
         }
         if (elementType == DIR_VIEW_TYPE) {
